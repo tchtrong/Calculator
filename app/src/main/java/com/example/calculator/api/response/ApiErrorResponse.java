@@ -1,7 +1,7 @@
-package com.example.calculator.exchangerateapi.response;
+package com.example.calculator.api.response;
 
 public final class ApiErrorResponse<T> extends ApiResponse<T> {
-    private String error;
+    private final String error;
 
     public ApiErrorResponse(String error) {
         this.error = error;

@@ -8,10 +8,9 @@ import java.time.LocalDate;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
-@Singleton
-public class ExchangeRateTypeConverters {
-    @Inject
-    public ExchangeRateTypeConverters() {
+public class RequestDateTypeConverters {
+
+    public RequestDateTypeConverters() {
     }
 
     @TypeConverter

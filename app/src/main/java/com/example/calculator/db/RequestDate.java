@@ -7,8 +7,11 @@ import androidx.room.TypeConverters;
 
 import java.time.LocalDate;
 
+import lombok.Data;
+
+@Data
 @Entity
-@TypeConverters(value = {ExchangeRateTypeConverters.class})
+@TypeConverters(value = {RequestDateTypeConverters.class})
 public class RequestDate {
 
     @PrimaryKey
@@ -22,21 +25,4 @@ public class RequestDate {
         this.id = 1;
         this.localDate = localDate;
     }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public void setLocalDate(LocalDate localDate) {
-        this.localDate = localDate;
-    }
-
-    public LocalDate getLocalDate() {
-        return localDate;
-    }
-
 }

@@ -1,6 +1,6 @@
-package com.example.calculator.exchangerateapi.response;
+package com.example.calculator.api.response;
 
-import com.example.calculator.exchangerateapi.ExchangeRateResponse;
+import com.example.calculator.api.exchangerateapi.ExchangeRateResponse;
 
 import java.io.IOException;
 import java.util.Map;

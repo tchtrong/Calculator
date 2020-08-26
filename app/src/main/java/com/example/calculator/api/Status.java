@@ -1,4 +1,4 @@
-package com.example.calculator.exchangerateapi;
+package com.example.calculator.api;
 
 public enum Status {
     SUCCESS,

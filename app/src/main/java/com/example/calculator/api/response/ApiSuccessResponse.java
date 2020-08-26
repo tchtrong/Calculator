@@ -1,7 +1,7 @@
-package com.example.calculator.exchangerateapi.response;
+package com.example.calculator.api.response;
 
 public final class ApiSuccessResponse<T> extends ApiResponse<T> {
-    private T body;
+    private final T body;
 
     public ApiSuccessResponse(T body) {
         this.body = body;

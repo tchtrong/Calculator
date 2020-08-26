@@ -1,8 +1,11 @@
-package com.example.calculator.exchangerateapi;
+package com.example.calculator.api;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import lombok.Data;
+
+@Data
 public class Resource<T> {
     @NonNull
     private final Status status;
@@ -29,20 +32,5 @@ public class Resource<T> {
 
     public static <R> Resource<R> loading(@Nullable R data) {
         return new Resource<>(Status.LOADING, data, null);
-    }
-
-    @NonNull
-    public Status getStatus() {
-        return status;
-    }
-
-    @Nullable
-    public T getData() {
-        return data;
-    }
-
-    @Nullable
-    public String getMessage() {
-        return message;
     }
 }

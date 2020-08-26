@@ -1,8 +1,8 @@
-package com.example.calculator.exchangerateapi.adapter;
+package com.example.calculator.api.adapter;
 
 import androidx.lifecycle.LiveData;
 
-import com.example.calculator.exchangerateapi.response.ApiResponse;
+import com.example.calculator.api.response.ApiResponse;
 
 import java.io.IOException;
 import java.lang.reflect.Type;

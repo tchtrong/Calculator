@@ -6,7 +6,7 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.SavedStateHandle;
 import androidx.lifecycle.ViewModel;
 
-import com.example.calculator.exchangerateapi.Resource;
+import com.example.calculator.api.Resource;
 import com.example.calculator.repository.ExchangeRateRepository;
 import com.example.calculator.vo.ExchangeRate;
 
@@ -15,7 +15,7 @@ import java.util.List;
 import lombok.Getter;
 
 public class CurrencyConverterViewModel extends ViewModel {
-    
+
     @Getter
     private final ExchangeRateRepository exchangeRateRepository;
 

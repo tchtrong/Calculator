@@ -1,4 +1,4 @@
-package com.example.calculator.exchangerateapi;
+package com.example.calculator.api.exchangerateapi;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -11,20 +11,23 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import lombok.Data;
+
+@Data
 public class ExchangeRateResponse {
     @NonNull
-    private Boolean success;
+    private final Boolean success;
 
     @Nullable
-    private Map<Integer, String> error;
+    private final Map<Integer, String> error;
 
-    private Instant timeStamp;
+    private final Instant timeStamp;
 
-    private String base;
+    private final String base;
 
-    private LocalDate date;
+    private final LocalDate date;
 
-    private Map<String, Double> rates;
+    private final Map<String, Double> rates;
 
     public ExchangeRateResponse(
             @NonNull Boolean success,
@@ -38,20 +41,12 @@ public class ExchangeRateResponse {
         this.rates = rates;
     }
 
-    @Nullable
-    public Map<Integer, String> getError() {
-        return error;
-    }
-
-    public LocalDate getDate() {
-        return date;
-    }
-
     public List<ExchangeRate> asExchangeRateList() {
         ArrayList<ExchangeRate> exchangeRates = new ArrayList<>();
         for (Map.Entry<String, Double> rate : rates.entrySet()) {
             exchangeRates.add(new ExchangeRate(rate.getKey(), rate.getValue()));
         }
+        exchangeRates.add(new ExchangeRate(base, (double) 1));
         return exchangeRates;
     }
 }

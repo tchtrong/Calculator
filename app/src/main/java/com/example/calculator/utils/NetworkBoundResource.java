@@ -1,5 +1,7 @@
 package com.example.calculator.utils;
 
+import android.util.Log;
+
 import androidx.annotation.MainThread;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -8,11 +10,11 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MediatorLiveData;
 
 import com.example.calculator.AppExecutors;
-import com.example.calculator.exchangerateapi.Resource;
-import com.example.calculator.exchangerateapi.response.ApiEmptyResponse;
-import com.example.calculator.exchangerateapi.response.ApiErrorResponse;
-import com.example.calculator.exchangerateapi.response.ApiResponse;
-import com.example.calculator.exchangerateapi.response.ApiSuccessResponse;
+import com.example.calculator.api.Resource;
+import com.example.calculator.api.response.ApiEmptyResponse;
+import com.example.calculator.api.response.ApiErrorResponse;
+import com.example.calculator.api.response.ApiResponse;
+import com.example.calculator.api.response.ApiSuccessResponse;
 
 public abstract class NetworkBoundResource<ResultType, RequestType> {
 

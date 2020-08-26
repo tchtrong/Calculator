@@ -5,6 +5,9 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.DefaultLifecycleObserver;
 import androidx.lifecycle.LifecycleOwner;
 
+import org.jetbrains.annotations.Contract;
+import org.jetbrains.annotations.NotNull;
+
 import lombok.Data;
 
 @Data
@@ -12,7 +15,7 @@ public class AutoClearedValue<T> {
 
     private T value;
 
-    public AutoClearedValue(Fragment fragment) {
+    public AutoClearedValue(@NotNull Fragment fragment) {
         fragment.getLifecycle().addObserver(new DefaultLifecycleObserver() {
             @Override
             public void onCreate(@NonNull LifecycleOwner owner) {
@@ -30,6 +33,8 @@ public class AutoClearedValue<T> {
         });
     }
 
+    @NotNull
+    @Contract("_ -> new")
     public static <R> AutoClearedValue<R> create(Fragment fragment) {
         return new AutoClearedValue<>(fragment);
     }

@@ -60,7 +60,7 @@ public class ExchangeRateRecycleViewAdapter
             }
         });
 
-        return null;
+        return binding;
     }
 
     @Override
