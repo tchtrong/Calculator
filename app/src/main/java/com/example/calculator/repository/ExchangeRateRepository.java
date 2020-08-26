@@ -5,14 +5,14 @@ import androidx.annotation.Nullable;
 import androidx.lifecycle.LiveData;
 
 import com.example.calculator.AppExecutors;
-import com.example.calculator.vo.ExchangeRate;
-import com.example.calculator.utils.NetworkBoundResource;
 import com.example.calculator.db.ExchangeRateDao;
 import com.example.calculator.db.RequestDate;
 import com.example.calculator.exchangerateapi.ExchangeRateResponse;
 import com.example.calculator.exchangerateapi.FixerService;
 import com.example.calculator.exchangerateapi.Resource;
 import com.example.calculator.exchangerateapi.response.ApiResponse;
+import com.example.calculator.utils.NetworkBoundResource;
+import com.example.calculator.vo.ExchangeRate;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -36,7 +36,7 @@ public class ExchangeRateRepository {
         this.fixerService = fixerService;
     }
 
-    LiveData<Resource<List<ExchangeRate>>> loadExchangeRateList() {
+    public LiveData<Resource<List<ExchangeRate>>> loadExchangeRateList() {
         return new NetworkBoundResource<List<ExchangeRate>, ExchangeRateResponse>(appExecutors) {
             @Override
             protected void saveCallResult(@NonNull ExchangeRateResponse item) {
@@ -63,7 +63,7 @@ public class ExchangeRateRepository {
         }.asLiveData();
     }
 
-    LiveData<Resource<ExchangeRate>> loadExchangeRate(String code) {
+    public LiveData<Resource<ExchangeRate>> loadExchangeRate(String code) {
         return new NetworkBoundResource<ExchangeRate, ExchangeRateResponse>(appExecutors) {
             @Override
             protected void saveCallResult(@NonNull ExchangeRateResponse item) {
