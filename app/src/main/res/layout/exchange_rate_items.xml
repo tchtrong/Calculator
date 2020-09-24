@@ -36,7 +36,7 @@
             android:id="@+id/rate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{exchangeRate.rate.toString()}"
+            android:text="@{String.valueOf(exchangeRate.rate * exchangeRate.value)}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/display_name"
             tool:text="23000" />

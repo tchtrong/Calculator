@@ -3,7 +3,7 @@ package com.example.calculator.api.exchangerateapi;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.example.calculator.vo.ExchangeRate;
+import com.example.calculator.db.ExchangeRateEntity;
 
 import java.time.Instant;
 import java.time.LocalDate;
@@ -29,24 +29,12 @@ public class ExchangeRateResponse {
 
     private final Map<String, Double> rates;
 
-    public ExchangeRateResponse(
-            @NonNull Boolean success,
-            @Nullable Map<Integer, String> error, Instant timeStamp, String base,
-            LocalDate date, Map<String, Double> rates) {
-        this.success = success;
-        this.error = error;
-        this.timeStamp = timeStamp;
-        this.base = base;
-        this.date = date;
-        this.rates = rates;
-    }
-
-    public List<ExchangeRate> asExchangeRateList() {
-        ArrayList<ExchangeRate> exchangeRates = new ArrayList<>();
+    public List<ExchangeRateEntity> asListOfExchangeRateEntity() {
+        ArrayList<ExchangeRateEntity> exchangeRates = new ArrayList<>();
         for (Map.Entry<String, Double> rate : rates.entrySet()) {
-            exchangeRates.add(new ExchangeRate(rate.getKey(), rate.getValue()));
+            exchangeRates.add(new ExchangeRateEntity(rate.getKey(), rate.getValue(), date));
         }
-        exchangeRates.add(new ExchangeRate(base, (double) 1));
+        exchangeRates.add(new ExchangeRateEntity(base, (double) 1, date));
         return exchangeRates;
     }
 }

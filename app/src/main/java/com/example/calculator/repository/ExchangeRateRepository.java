@@ -12,12 +12,10 @@ import com.example.calculator.api.exchangerateapi.ExchangeRateResponse;
 import com.example.calculator.api.exchangerateapi.FixerService;
 import com.example.calculator.api.response.ApiResponse;
 import com.example.calculator.db.ExchangeRateDao;
-import com.example.calculator.db.RequestDate;
+import com.example.calculator.db.ExchangeRateEntity;
 import com.example.calculator.utils.NetworkBoundResource;
 import com.example.calculator.utils.RateLimiter;
-import com.example.calculator.vo.ExchangeRate;
 
-import java.time.LocalDate;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -43,15 +41,15 @@ public class ExchangeRateRepository {
         this.rateLimiter = new RateLimiter<>(1, TimeUnit.HOURS);
     }
 
-    public LiveData<Resource<List<ExchangeRate>>> loadExchangeRateList() {
-        return new NetworkBoundResource<List<ExchangeRate>, ExchangeRateResponse>(appExecutors) {
+    public LiveData<Resource<List<ExchangeRateEntity>>> loadExchangeRateList() {
+        return new NetworkBoundResource<List<ExchangeRateEntity>, ExchangeRateResponse>(appExecutors) {
 
             private static final String RATE_LIMITER_KEY = "load_all";
 
             @Override
             protected void saveCallResult(@NonNull ExchangeRateResponse item) {
                 Log.d("saveCallResult", "Number: " + item.getRates().size());
-                exchangeRateDao.insert(item.asExchangeRateList());
+                exchangeRateDao.insert(item.asListOfExchangeRateEntity());
             }
 
             @Override
@@ -60,13 +58,13 @@ public class ExchangeRateRepository {
             }
 
             @Override
-            protected Boolean shouldFetch(@Nullable List<ExchangeRate> data) {
+            protected Boolean shouldFetch(@Nullable List<ExchangeRateEntity> data) {
                 //RequestDate requestDate = exchangeRateDao.loadRequestDate(1);
                 return data == null || data.isEmpty() || rateLimiter.shouldFetch(RATE_LIMITER_KEY);
             }
 
             @Override
-            protected LiveData<List<ExchangeRate>> loadFromDb() {
+            protected LiveData<List<ExchangeRateEntity>> loadFromDb() {
                 return exchangeRateDao.loadExchangeRateList();
             }
 
@@ -78,27 +76,27 @@ public class ExchangeRateRepository {
         }.asLiveData();
     }
 
-    public LiveData<Resource<ExchangeRate>> loadExchangeRate(String code) {
-        return new NetworkBoundResource<ExchangeRate, ExchangeRateResponse>(appExecutors) {
-            @Override
-            protected void saveCallResult(@NonNull ExchangeRateResponse item) {
-                exchangeRateDao.insert(item.asExchangeRateList());
-            }
-
-            @Override
-            protected Boolean shouldFetch(@Nullable ExchangeRate data) {
-                return data == null;
-            }
-
-            @Override
-            protected LiveData<ExchangeRate> loadFromDb() {
-                return exchangeRateDao.loadExchangeRate(code);
-            }
-
-            @Override
-            protected LiveData<ApiResponse<ExchangeRateResponse>> createCall() {
-                return fixerService.getExchangeRate();
-            }
-        }.asLiveData();
-    }
+//    public LiveData<Resource<ExchangeRate>> loadExchangeRate(String code) {
+//        return new NetworkBoundResource<ExchangeRate, ExchangeRateResponse>(appExecutors) {
+//            @Override
+//            protected void saveCallResult(@NonNull ExchangeRateResponse item) {
+//                exchangeRateDao.insert(item.asListOfExchangeRateEntity());
+//            }
+//
+//            @Override
+//            protected Boolean shouldFetch(@Nullable ExchangeRate data) {
+//                return data == null;
+//            }
+//
+//            @Override
+//            protected LiveData<ExchangeRate> loadFromDb() {
+//                return exchangeRateDao.loadExchangeRate(code);
+//            }
+//
+//            @Override
+//            protected LiveData<ApiResponse<ExchangeRateResponse>> createCall() {
+//                return fixerService.getExchangeRate();
+//            }
+//        }.asLiveData();
+//    }
 }

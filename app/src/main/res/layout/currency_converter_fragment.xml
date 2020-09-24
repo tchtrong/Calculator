@@ -12,19 +12,32 @@
         android:layout_height="match_parent"
         tools:context=".ui.currencyconverter.CurrencyConverterFragment">
 
-
-        <!--        <include-->
-        <!--            layout="@layout/input_components"-->
-        <!--            android:layout_width="wrap_content"-->
-        <!--            android:layout_height="wrap_content" />-->
-
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/exchange_rate_rec_list"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
             app:layoutManager="LinearLayoutManager"
+            app:layout_constraintBottom_toTopOf="@+id/input_components"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:listitem="@layout/exchange_rate_items" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/input_components"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/exchange_rate_rec_list">
+
+            <include
+                android:id="@+id/include"
+                layout="@layout/input_components"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

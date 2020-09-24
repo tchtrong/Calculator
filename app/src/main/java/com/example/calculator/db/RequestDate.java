@@ -11,7 +11,7 @@ import lombok.Data;
 
 @Data
 @Entity
-@TypeConverters(value = {RequestDateTypeConverters.class})
+@TypeConverters(value = {LocalDateConverter.class})
 public class RequestDate {
 
     @PrimaryKey

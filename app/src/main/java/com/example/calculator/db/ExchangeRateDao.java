@@ -6,15 +6,13 @@ import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 
-import com.example.calculator.vo.ExchangeRate;
-
 import java.util.List;
 
 @Dao
 public interface ExchangeRateDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    void insert(List<ExchangeRate> exchangeRates);
+    void insert(List<ExchangeRateEntity> exchangeRates);
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insert(RequestDate requestDate);
@@ -22,10 +20,10 @@ public interface ExchangeRateDao {
     @Query("SELECT * FROM requestdate WHERE id = :id")
     RequestDate loadRequestDate(Integer id);
 
-    @Query(value = "SELECT * FROM exchangerate")
-    LiveData<List<ExchangeRate>> loadExchangeRateList();
+    @Query(value = "SELECT * FROM ExchangeRateEntity")
+    LiveData<List<ExchangeRateEntity>> loadExchangeRateList();
 
-    @Query(value = "SELECT * FROM exchangerate WHERE code = :code")
-    LiveData<ExchangeRate> loadExchangeRate(String code);
+    @Query(value = "SELECT * FROM ExchangeRateEntity WHERE code = :code")
+    LiveData<ExchangeRateEntity> loadExchangeRate(String code);
 
 }

@@ -1,15 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <merge xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/input_components"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <EditText
         android:id="@+id/txt_input_formula"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:hint="Enter expression"
+        android:hint="@string/enter_expression"
         android:importantForAutofill="no"
         android:inputType="textPersonName"
         android:textSize="24sp"

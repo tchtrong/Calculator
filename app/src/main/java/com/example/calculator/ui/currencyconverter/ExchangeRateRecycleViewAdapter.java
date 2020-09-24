@@ -15,6 +15,8 @@ import com.example.calculator.databinding.ExchangeRateItemsBinding;
 import com.example.calculator.ui.common.DataBoundListAdapter;
 import com.example.calculator.vo.ExchangeRate;
 
+import java.util.Objects;
+
 public class ExchangeRateRecycleViewAdapter
         extends DataBoundListAdapter<ExchangeRate, ExchangeRateItemsBinding> {
 
@@ -31,12 +33,12 @@ public class ExchangeRateRecycleViewAdapter
         super(appExecutors, new DiffUtil.ItemCallback<ExchangeRate>() {
             @Override
             public boolean areItemsTheSame(@NonNull ExchangeRate oldItem, @NonNull ExchangeRate newItem) {
-                return oldItem.getCode().equals(newItem.getCode());
+                return oldItem.getCode().equals(newItem.getCode()) && oldItem.getValue().equals(newItem.getValue());
             }
 
             @Override
             public boolean areContentsTheSame(@NonNull ExchangeRate oldItem, @NonNull ExchangeRate newItem) {
-                return oldItem.getRate().equals(newItem.getRate());
+                return Objects.equals(oldItem.getValue().get(), newItem.getValue().get());
             }
         });
         this.dataBindingComponent = dataBindingComponent;

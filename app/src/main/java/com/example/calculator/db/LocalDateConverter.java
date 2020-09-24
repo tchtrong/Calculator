@@ -5,12 +5,9 @@ import androidx.room.TypeConverter;
 
 import java.time.LocalDate;
 
-import javax.inject.Inject;
-import javax.inject.Singleton;
+public class LocalDateConverter {
 
-public class RequestDateTypeConverters {
-
-    public RequestDateTypeConverters() {
+    public LocalDateConverter() {
     }
 
     @TypeConverter
